@@ -105,22 +105,7 @@ public class ExportTest {
 
     }
 
-    /**
-     * 获取期刊文献
-     * @author Innocence
-     * @date 2020/7/16
-     * @return java.util.List<model.AbstractArticle>
-     */
-    public static List<AbstractArticle> getMedia() {
-        GetInfoFromZlfUtil zlfUtil = new GetInfoFromZlfUtil();
-        List<ArticleField> total = new ArrayList<>();
-        for (int i = 1; i < 122; i++) {
-            List<ArticleField> articles = zlfUtil.getArticles(i, "1");
-            total.addAll(articles);
-        }
-        List<AbstractArticle> list = zlfUtil.loadArticles(total, "1");
-        return list;
-    }
+
 
     /**
      * 获取学位文献

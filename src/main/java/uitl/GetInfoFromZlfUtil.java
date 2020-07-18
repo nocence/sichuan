@@ -1,6 +1,7 @@
 package uitl;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.cqvip.vipcloud.model.dto.PageObject;
 import com.cqvip.vipcloud.model.dto.function.VipSearchByObject;
@@ -76,7 +77,10 @@ public class GetInfoFromZlfUtil {
                 media.setMedia_c(a.getMedia_c());
                 media.setMedia_e(a.getMedia_e());
                 media.setMediasQk(a.getMedias_qk());
-                media.setShowwriter(a.getShowwriter().replaceAll(MACTHER,"").trim());
+                String showwriter = a.getShowwriter();
+                if (!StringUtils.isBlank(showwriter)){
+                    media.setShowwriter(showwriter.replaceAll(MACTHER,"").trim());
+                }
                 media.setShowOrgan(a.getShoworgan().replaceAll(MACTHER,"").trim());
                 media.setAuthorE(a.getAuthor_e());
                 media.setRemarkC(a.getRemark_c());
@@ -430,7 +434,7 @@ public class GetInfoFromZlfUtil {
      * @param rule
      * @return
      */
-    public JSONArray getRelateArticle(Integer rows,String rule){
+    public JSONArray getRelateArticle(Integer rows,String rule)  {
         VipSearchByObject search = new VipSearchByObject();
         search.setObjectName(VipSearchEnum.ARTICLE);
         search.setPageNum(1);
